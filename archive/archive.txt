@@ -1,0 +1,12 @@
+old iteration loop 1/3 for single global listing
+
+for y in range(len(agent_list)):
+        #record moved agent state slightly towards average if not on average
+        if(current_agent_average - agent_list[y].state < 0):
+            agent_state_snapshot[y] = (agent_list[y].state - (agent_list[y].state - current_agent_average)/convergence_rate)
+        elif(current_agent_average - agent_list[y].state > 0):
+            agent_state_snapshot[y] = (agent_list[y].state + (current_agent_average - agent_list[y].state)/convergence_rate)
+
+    #update snapshotted values at time t
+    for z in range(len(agent_list)):
+        agent_list[z].state = agent_state_snapshot[z]
